@@ -22,6 +22,7 @@ trann/
 - openpyxl>=3.1.5
 
 ## Installation
+> It is recommended to use virtual environment (conda or venv)
 
 Clone the repository and install the package:
 
