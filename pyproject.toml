@@ -1,0 +1,14 @@
+[project]
+name = "trann"
+version = "0.1.0"
+description = "A small CLI program for adding annotations to phylogenetic trees in the newick format"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "biopython>=1.86",
+    "numpy>=2.3.4",
+    "openpyxl>=3.1.5",
+]
+
+[project.scripts]
+trann = "trann.trann:main"
