@@ -32,7 +32,7 @@ def main():
     tree = Phylo.read(tree_path, 'newick')
     data_to_add = {}
     for row in info_table[1:]:
-        data_to_add[row[0]] = separator.join([str(i).strip() for i in row])
+        data_to_add[row[0].strip()] = separator.join([str(i).strip() for i in row if i])
 
     patterns = list(data_to_add.keys())
     for clade in tree.get_terminals():
@@ -49,7 +49,12 @@ def main():
             else:
 
                 match = is_info[is_info != None][0].group()
-            clade.name = data_to_add[match]
+
+            try:
+                clade.name = data_to_add[match]
+            except KeyError as e:
+                print(f'\033[91m[ERROR]\033[0m There is no leaf with label "{e}"')
+                sys.exit(1)
 
     Phylo.write(tree, output, 'newick')
 
